@@ -2,15 +2,6 @@
 set -euo pipefail
 
 
-
-# Check if the directory already exists
-if [ ! -d "tempdir" ]; then
-    mkdir tempdir
-fi
-
-# Other commands in the script continue as usual
-
-
 mkdir tempdir
 mkdir tempdir/templates
 mkdir tempdir/static
