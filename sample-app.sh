@@ -1,4 +1,26 @@
 #!/bin/bash
+
+# Check if the Docker container named 'samplerunning' is already running
+if [ "$(docker ps -q -f name=samplerunning)" ]; then
+    # Stop the container if it's running
+    docker stop samplerunning
+fi
+
+# Check again and remove the container if it exists (after stopping)
+if [ "$(docker ps -aq -f name=samplerunning)" ]; then
+    docker rm samplerunning
+fi
+
+# Small delay to ensure Docker has stopped and removed the container
+sleep 2
+
+# Build the Docker image
+docker build -t sampleapp .
+
+# Run the container with the specified name
+docker run -d -p 5050:5050 --name samplerunning sampleapp
+
+
 set -euo pipefail
 
 
